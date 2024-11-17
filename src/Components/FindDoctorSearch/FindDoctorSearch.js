@@ -1,49 +1,35 @@
 import React, { useState } from 'react';
-import './FindDoctorSearch.css';
 
-const specialties = [
-  'Dentist', 'Gynecologist/Obstetrician', 'General Physician', 'Dermatologist',
-  'Ear-Nose-Throat (ENT) Specialist', 'Homeopath', 'Ayurveda'
+// Dummy doctor data (you can replace this with actual data)
+const doctors = [
+  { id: 1, name: 'Dr. John Doe', specialty: 'Cardiologist' },
+  { id: 2, name: 'Dr. Jane Smith', specialty: 'Dermatologist' },
+  { id: 3, name: 'Dr. Richard Roe', specialty: 'Pediatrician' },
 ];
 
-const FindDoctorSearch = () => {
-  const [searchDoctor, setSearchDoctor] = useState('');
-  const [doctorResultHidden, setDoctorResultHidden] = useState(true);
+const FindDoctorSearch = ({ onDoctorSelect }) => {
+  const [searchQuery, setSearchQuery] = useState('');
 
-  const handleDoctorSelect = (speciality) => {
-    setSearchDoctor(speciality);
-    setDoctorResultHidden(true);  // Hide the list once a speciality is selected
-  };
+  // Filter doctors based on search query
+  const filteredDoctors = doctors.filter(doctor =>
+    doctor.name.toLowerCase().includes(searchQuery.toLowerCase())
+  );
 
   return (
-    <div className="finddoctor">
-      <center>
-        <h1>Find a Doctor for Instant Consultation</h1>
-        <div className="home-search-container">
-          <div className="doctor-search-box">
-            <input
-              type="text"
-              className="search-doctor-input-box"
-              placeholder="Search doctors by specialty"
-              value={searchDoctor}
-              onChange={(e) => setSearchDoctor(e.target.value)}
-              onFocus={() => setDoctorResultHidden(false)}  // Show the list when input is focused
-              onBlur={() => setDoctorResultHidden(true)}    // Hide the list when input loses focus
-            />
-            <div className="search-doctor-input-results" hidden={doctorResultHidden}>
-              {specialties.filter(speciality => speciality.toLowerCase().includes(searchDoctor.toLowerCase())).map(speciality => (
-                <div
-                  className="search-doctor-result-item"
-                  key={speciality}
-                  onMouseDown={() => handleDoctorSelect(speciality)}
-                >
-                  <span>{speciality}</span>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </center>
+    <div className="find-doctor-search">
+      <input
+        type="text"
+        placeholder="Search by doctor name"
+        value={searchQuery}
+        onChange={(e) => setSearchQuery(e.target.value)}
+      />
+      <ul>
+        {filteredDoctors.map(doctor => (
+          <li key={doctor.id} onClick={() => onDoctorSelect(doctor)}>
+            {doctor.name} - {doctor.specialty}
+          </li>
+        ))}
+      </ul>
     </div>
   );
 };

@@ -1,0 +1,21 @@
+/* BookingConsultation.css */
+.booking-consultation {
+    text-align: center;
+    margin: 2rem;
+  }
+  
+  .booking-consultation h2 {
+    font-size: 2rem;
+    margin-bottom: 2rem;
+  }
+  
+  .find-doctor-container {
+    margin-bottom: 2rem;
+  }
+  
+  .doctor-card-container {
+    margin-top: 2rem;
+    display: flex;
+    justify-content: center;
+  }
+  

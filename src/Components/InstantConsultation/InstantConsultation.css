@@ -34,3 +34,37 @@
     text-align: left;
     font-size: 15px;
 }
+.booking-consultation {
+  padding: 20px;
+  text-align: center;
+}
+
+.find-doctor-container {
+  margin-bottom: 20px;
+}
+
+.doctor-card-container {
+  margin-top: 20px;
+}
+
+.find-doctor-search input {
+  padding: 0.75rem;
+  font-size: 1rem;
+  width: 100%;
+  border-radius: 50px;
+  border: 2px solid #3685fb;
+}
+
+.find-doctor-search ul {
+  list-style: none;
+  padding: 0;
+}
+
+.find-doctor-search li {
+  padding: 10px;
+  cursor: pointer;
+}
+
+.find-doctor-search li:hover {
+  background-color: #f0f0f0;
+}

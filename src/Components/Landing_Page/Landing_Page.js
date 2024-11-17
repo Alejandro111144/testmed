@@ -1,14 +1,45 @@
 import React, { useState } from "react"; // Importing React library
 import { Link } from "react-router-dom"; // Importing Link from react-router-dom
+import DoctorCard from '../DoctorCard/DoctorCard'; // Adjust the path based on where DoctorCard.js is located
 import "./LandingPage.css"; // Importing the CSS for the landing page
 
 // Defining the LandingPage component
 const Landing_Page = () => {
   const [searchQuery, setSearchQuery] = useState(""); // State for search query
 
+  // Example data for doctors (you can fetch this data from an API in a real scenario)
+  const doctors = [
+    {
+      image: "https://via.placeholder.com/250",
+      name: "Dr. John Doe",
+      specialty: "Cardiologist",
+      experience: 15,
+      rating: 5,
+      profile:
+        "Dr. John Doe is an experienced cardiologist with over 15 years of expertise in treating heart diseases and providing preventive care.",
+    },
+    {
+      image: "https://via.placeholder.com/250",
+      name: "Dr. Jane Smith",
+      specialty: "Neurologist",
+      experience: 10,
+      rating: 4,
+      profile:
+        "Dr. Jane Smith is a skilled neurologist specializing in brain and spinal cord disorders with 10 years of experience.",
+    },
+    // Add more doctor objects as needed
+  ];
+
   const handleSearchChange = (e) => {
     setSearchQuery(e.target.value); // Handle input change
   };
+
+  // Filter the doctors based on the search query
+  const filteredDoctors = doctors.filter(
+    (doctor) =>
+      doctor.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      doctor.specialty.toLowerCase().includes(searchQuery.toLowerCase())
+  );
 
   return (
     <section className="hero-section">
@@ -46,6 +77,17 @@ const Landing_Page = () => {
             className="search-input"
           />
           <button className="search-button">Search</button>
+        </div>
+
+        {/* Displaying the filtered doctor cards */}
+        <div className="doctor-cards-container">
+          {filteredDoctors.length > 0 ? (
+            filteredDoctors.map((doctor, index) => (
+              <DoctorCard key={index} doctor={doctor} />
+            ))
+          ) : (
+            <p>No doctors found based on your search.</p>
+          )}
         </div>
       </div>
     </section>
