@@ -7,6 +7,7 @@ import LandingPage from './Components/Landing_Page/Landing_Page';
 // Import SignUp and Login components (Ensure these are renamed to PascalCase)
 import SignUp from './Components/Sign_Up/Sign_Up'; // Changed 'Sign_Up' to 'SignUp'
 import Login from './Components/Login/Login'; // Ensure 'Login' is in PascalCase
+import InstantConsultation from './Components/InstantConsultation/InstantConsultation';  
 
 // Import components for routing from react-router-dom library
 import { BrowserRouter, Routes, Route } from "react-router-dom";
@@ -27,7 +28,7 @@ function App() {
         <Routes>
           {/* Define the Route for LandingPage component */}
           <Route path="/" element={<LandingPage />} /> {/* This will render LandingPage when the user visits the root URL */}
-
+          <Route path="/instant-consultation" element={<InstantConsultation />} />
           {/* Define the Route for SignUp component */}
           <Route path="/signup" element={<SignUp />} /> {/* This will render SignUp page for /signup */}
 

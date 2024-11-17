@@ -1,17 +1,20 @@
-import React, { useState } from 'react';  // Import useState hook
-import './Navbar.css';  // Importación del archivo CSS
+import React, { useState } from 'react'; // Import useState hook
+import './Navbar.css'; // Import CSS styles
+import { useNavigate } from 'react-router-dom'; // Import useNavigate for routing
 
 function Navbar() {
-    const [isMenuOpen, setIsMenuOpen] = useState(false);  // State for menu open/close
+    const [isMenuOpen, setIsMenuOpen] = useState(false); // State for menu toggle
+    const navigate = useNavigate(); // Hook for navigation
 
-    // Handle the click event to toggle the menu
+    // Handle the menu toggle
     const handleClick = () => {
-        setIsMenuOpen(!isMenuOpen);  // Toggle the state
+        setIsMenuOpen(!isMenuOpen);
     };
 
     return (
         <div>
             <nav>
+                {/* Logo Section */}
                 <div className="nav__logo">
                     <a href="/">
                         StayHealthy
@@ -29,18 +32,23 @@ function Navbar() {
                     <span>.</span>
                 </div>
 
-                {/* Hamburger menu icon */}
+                {/* Hamburger Menu Icon */}
                 <div className="nav__icon" onClick={handleClick}>
-                    <i className={`fa ${isMenuOpen ? 'fa-times' : 'fa-bars'}`}></i> {/* Toggle icon */}
+                    <i className={`fa ${isMenuOpen ? 'fa-times' : 'fa-bars'}`}></i>
                 </div>
 
-                {/* Conditional rendering of menu based on state */}
+                {/* Navigation Links */}
                 <ul className={`nav__links ${isMenuOpen ? 'active' : ''}`}>
                     <li className="link">
                         <a href="../">Home</a>
                     </li>
                     <li className="link">
-                    <button onClick={handleClick}>Appointments</button>
+                        <button onClick={() => navigate('/instant-consultation')} className="btn-instant">
+                            Instant Consultation
+                        </button>
+                    </li>
+                    <li className="link">
+                        <button onClick={handleClick}>Appointments</button>
                     </li>
                     <li className="link">
                         <a href="../signup">
