@@ -277,3 +277,270 @@
         transform: scale(1);
     }
 }
+.reviews-section {
+  margin: 40px 0;
+  padding: 20px;
+  background-color: #f9f9f9;
+}
+
+.reviews-section h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  font-size: 24px;
+}
+
+.reviews-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 0 auto;
+}
+
+.reviews-table th,
+.reviews-table td {
+  border: 1px solid #ddd;
+  padding: 10px;
+  text-align: center;
+}
+
+.reviews-table th {
+  background-color: #f2f2f2;
+  font-weight: bold;
+}
+
+.reviews-table tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+.reviews-table tr:hover {
+  background-color: #f1f1f1;
+}
+
+.feedback-button {
+  background-color: #007bff;
+  color: white;
+  padding: 5px 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.feedback-button:hover {
+  background-color: #0056b3;
+}
+.reviews-section {
+  margin: 40px 0;
+  padding: 20px;
+  background-color: #f9f9f9;
+  text-align: center;
+}
+
+.reviews-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+}
+
+.review-card {
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 15px;
+  width: 300px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.review-card h3 {
+  margin: 0;
+  font-size: 18px;
+}
+
+.review-card p {
+  font-style: italic;
+  color: #555;
+}
+
+.review-card .rating {
+  margin-top: 10px;
+  font-weight: bold;
+  color: #4CAF50;
+}
+.reviews-section {
+    margin: 40px 0;
+    padding: 20px;
+    background-color: #f9f9f9;
+    text-align: center;
+  }
+  
+  .review-card {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 15px;
+    margin: 10px auto;
+    max-width: 400px;
+    background-color: #fff;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  .review-card h3 {
+    font-size: 18px;
+    margin-bottom: 8px;
+  }
+  
+  .review-card p {
+    font-size: 16px;
+    margin: 5px 0;
+  }
+  
+  .review-card .rating {
+    font-weight: bold;
+    margin: 10px 0;
+  }
+  
+  .feedback-button {
+    padding: 10px 15px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .feedback-button:hover {
+    background-color: #0056b3;
+  }
+  /* Overlay for the feedback form */
+.feedback-form-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+  
+  .feedback-form-overlay.show {
+    opacity: 1;
+  }
+  
+  .feedback-form-modal {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    width: 50%;
+    max-width: 600px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transform: translateY(50px);
+    transition: transform 0.3s ease-out;
+  }
+  
+  .feedback-form-overlay.show .feedback-form-modal {
+    transform: translateY(0);
+  }
+  
+  /* Close button */
+  .close-button {
+    background-color: #f44336;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-top: 15px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .close-button:hover {
+    background-color: #d32f2f;
+  }
+  
+  /* Feedback button style */
+  .feedback-button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .feedback-button:hover {
+    background-color: #0056b3;
+  }
+  /* The container for the feedback box */
+.feedback-container {
+    display: none; /* Hidden by default */
+    transition: opacity 0.5s ease-in-out;
+    opacity: 0;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+    max-width: 600px;
+    width: 100%;
+    z-index: 999;
+  }
+  
+  /* Show the feedback box with a fade-in effect */
+  .feedback-container.show {
+    display: block;
+    opacity: 1;
+  }
+  
+  /* Style for the title of the feedback box */
+  .feedback-title {
+    font-size: 24px;
+    font-weight: bold;
+    color: #333;
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  /* Feedback text area styling */
+  .feedback-textarea {
+    width: 100%;
+    padding: 15px;
+    font-size: 16px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    margin-bottom: 15px;
+    resize: vertical;
+    min-height: 150px;
+  }
+  
+  /* Styling when the text area is focused */
+  .feedback-textarea:focus {
+    border-color: #4CAF50;
+    outline: none;
+    box-shadow: 0 0 8px rgba(76, 175, 80, 0.3);
+  }
+  
+  /* Submit button styling */
+  .feedback-submit-btn {
+    background-color: #4CAF50;
+    color: white;
+    padding: 12px 20px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    width: 100%;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .feedback-submit-btn:hover {
+    background-color: #45a049;
+  }
+  

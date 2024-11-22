@@ -1,43 +1,163 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Landing Page</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">  
-    <link rel="stylesheet" href="./LandingPage.css">
-</head>
-<body>
-    <section class="hero-section">
-        <div>
-          <div data-aos="fade-up" class="flex-hero">
-              
-              <h1>
-                Your Health<br/>
-                <span class="text-gradient">
-                  
-                  Our Responsibility
-                </span>
-              </h1>
-                <div class="blob-cont">
-                    <div class="blue blob"></div>
-                </div>
-                <div class="blob-cont">
-                    <div class="blue1 blob"></div>
-                </div>
-              <h4>
-                Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eaque at quae ducimus. Suscipit omnis quibusdam non cum rem voluptatem! 
-              </h4>
-              <a href="#services">
-                <button class="button">Get Started</button>
-              </a>
-                
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
+import DoctorCard from '../DoctorCard/DoctorCard'; // Adjust the path as necessary
+import GiveReviews from '../GiveReviews/GiveReviews'; // Import the GiveReviews component
+import "./LandingPage.css";
+
+const Landing_Page = () => {
+  const [searchQuery, setSearchQuery] = useState("");
+  const [showFeedbackForm, setShowFeedbackForm] = useState(false); // State to control feedback form visibility
+  const [selectedReview, setSelectedReview] = useState(null); // State to hold selected review data
+
+  const doctors = [
+    {
+      image: "https://via.placeholder.com/250",
+      name: "Dr. John Doe",
+      specialty: "Cardiologist",
+      experience: 15,
+      rating: 5,
+      profile:
+        "Dr. John Doe is an experienced cardiologist with over 15 years of expertise in treating heart diseases and providing preventive care.",
+    },
+    {
+      image: "https://via.placeholder.com/250",
+      name: "Dr. Jane Smith",
+      specialty: "Neurologist",
+      experience: 10,
+      rating: 4,
+      profile:
+        "Dr. Jane Smith is a skilled neurologist specializing in brain and spinal cord disorders with 10 years of experience.",
+    },
+  ];
+
+  const reviews = [
+    {
+      patientName: "Alice Johnson",
+      feedback: "The service was excellent, and the doctor was very attentive!",
+      rating: 5,
+      doctorName: "Dr. John Doe",
+      doctorSpecialty: "Cardiology",
+    },
+    {
+      patientName: "Michael Brown",
+      feedback: "Quick and professional consultation. Highly recommended.",
+      rating: 4,
+      doctorName: "Dr. Jane Smith",
+      doctorSpecialty: "Dermatology",
+    },
+    {
+      patientName: "Sophia Davis",
+      feedback: "Easy to book and great care provided. Will use this again!",
+      rating: 5,
+      doctorName: "Dr. John Doe",
+      doctorSpecialty: "Cardiology",
+    },
+  ];
+
+  const handleSearchChange = (e) => {
+    setSearchQuery(e.target.value);
+  };
+
+  const handleFeedbackButtonClick = (review) => {
+    setSelectedReview(review); // Save the selected review details
+    setShowFeedbackForm(true); // Show the feedback form
+  };
+
+  const closeFeedbackForm = () => {
+    setShowFeedbackForm(false); // Close the feedback form
+    setSelectedReview(null); // Clear selected review
+  };
+
+  const filteredDoctors = doctors.filter(
+    (doctor) =>
+      doctor.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      doctor.specialty.toLowerCase().includes(searchQuery.toLowerCase())
+  );
+
+  return (
+    <section className="hero-section">
+      <div>
+        <div data-aos="fade-up" className="flex-hero">
+          <h1>
+            Your Health<br />
+            <span className="text-gradient">Our Responsibility</span>
+          </h1>
+          <div className="blob-cont">
+            <div className="blue blob"></div>
           </div>
-  
+          <div className="blob-cont">
+            <div className="blue1 blob"></div>
+          </div>
+          <h4>
+            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eaque at quae
+            ducimus. Suscipit omnis quibusdam non cum rem voluptatem!
+          </h4>
+          <Link to="#services">
+            <button className="button">Get Started</button>
+          </Link>
         </div>
-      </section>
-</body>
-</html>
+      </div>
+
+      {/* Find a Doctor Section */}
+      <div className="find-doctor-section">
+        <h2>Find a Doctor for Instant Consultation</h2>
+        <div className="search-container">
+          <input
+            type="text"
+            placeholder="Search by specialty or doctor name"
+            value={searchQuery}
+            onChange={handleSearchChange}
+            className="search-input"
+          />
+          <button className="search-button">Search</button>
+        </div>
+
+        <div className="doctor-cards-container">
+          {filteredDoctors.length > 0 ? (
+            filteredDoctors.map((doctor, index) => (
+              <DoctorCard key={index} doctor={doctor} />
+            ))
+          ) : (
+            <p>No doctors found based on your search.</p>
+          )}
+        </div>
+      </div>
+
+      {/* Reviews Section */}
+      <div className="reviews-section">
+        <h2>Reviews</h2>
+        <div className="reviews-container">
+          {reviews.map((review, index) => (
+            <div key={index} className="review-card">
+              <h3>Serial Number: {index + 1}</h3>
+              <p><strong>Review Given:</strong> "{review.feedback}"</p>
+              <p><strong>Doctor Name:</strong> {review.doctorName}</p>
+              <p><strong>Doctor Specialty:</strong> {review.doctorSpecialty}</p>
+              <div className="rating">Rating: {review.rating} / 5</div>
+              <button
+                className="feedback-button"
+                onClick={() => handleFeedbackButtonClick(review)}
+              >
+                Provide Feedback
+              </button>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* Feedback Form Section */}
+      {showFeedbackForm && (
+        <div className="feedback-form-overlay">
+          <div className="feedback-form-modal">
+            <GiveReviews />
+            <button className="close-button" onClick={closeFeedbackForm}>
+              Close
+            </button>
+          </div>
+        </div>
+      )}
+    </section>
+  );
+};
+
+export default Landing_Page;
