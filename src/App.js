@@ -8,6 +8,7 @@ import Login from './Components/Login/Login';
 import InstantConsultation from './Components/InstantConsultation/InstantConsultation';
 import BookingConsultation from './Components/BookingConsultation'; 
 import ReviewForm from './Components/ReviewForm/ReviewForm'; // Import ReviewForm
+import ReportsLayout from './Components/ReportsLayout/ReportsLayout'; // Import ReportsLayout
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
             <Route path="/instant-consultation" element={<InstantConsultation />} />
             <Route path="/booking-consultation" element={<BookingConsultation />} />
             <Route path="/review-form" element={<ReviewForm />} /> {/* New Route for ReviewForm */}
+            <Route path="/reports" element={<ReportsLayout />} /> {/* New Route for ReportsLayout */}
           </Routes>
         </Notification>
       </BrowserRouter>
